@@ -6,6 +6,7 @@
 
 #include <frc2/command/CommandBase.h>
 #include <frc2/command/CommandHelper.h>
+#include "subsystems/BlackChassis.h"
 
 /**
  * An example command.
@@ -17,7 +18,7 @@
 class TankChassis
     : public frc2::CommandHelper<frc2::CommandBase, TankChassis> {
  public:
-  TankChassis();
+  TankChassis(BlackChassis& driveTrain, std::function<double()> left, std::function<double()> right);
 
   void Initialize() override;
 
@@ -26,4 +27,9 @@ class TankChassis
   void End(bool interrupted) override;
 
   bool IsFinished() override;
+
+  private:
+  BlackChassis& DriveTrain;
+  std::function<double()> Left;
+  std::function<double()> Right;
 };
