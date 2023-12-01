@@ -22,16 +22,31 @@
 class RobotContainer {
  public:
   RobotContainer();
+  using WPI_TalonFX = ctre::phoenix::motorcontrol::can::WPI_TalonFX;
 
   frc2::CommandPtr GetAutonomousCommand();
+
+  static constexpr int FRWheel{0};
+  static constexpr int BRWheel{1};
+  static constexpr int FLWheel{3};
+  static constexpr int BLWheel{4};
 
  private:
   // Replace with CommandPS4Controller or CommandJoystick if needed
   frc2::CommandXboxController m_driverController{
       OperatorConstants::kDriverControllerPort};
+      frc::XboxController driver{0};
+
+
 
   // The robot's subsystems are defined here...
   ExampleSubsystem m_subsystem;
+
+  WPI_TalonFX FrontRightWheel{FRWheel};
+  WPI_TalonFX BackRightWheel{BRWheel};
+  WPI_TalonFX FrontLeftWheel{FLWheel};
+  WPI_TalonFX BackLeftWheel{BLWheel};
+  BlackChassis DriveTrain{FrontRightWheel, BackRightWheel, FrontLeftWheel, BackLeftWheel};
 
   void ConfigureBindings();
 };

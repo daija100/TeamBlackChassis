@@ -8,8 +8,16 @@
 
 #include "commands/Autos.h"
 #include "commands/ExampleCommand.h"
+#include "commands/TankChassis.h"
 
 RobotContainer::RobotContainer() {
+  DriveTrain.SetDefaultCommand(
+    TankChassis(
+      DriveTrain,
+      [this] {return -driver.GetLeftY();},
+      [this] {return -driver.GetRightY();}
+    )
+  );
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindings

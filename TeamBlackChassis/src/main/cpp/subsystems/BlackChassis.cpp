@@ -3,6 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include "subsystems/BlackChassis.h"
+#include <frc/smartdashboard/SmartDashboard.h>
 
 BlackChassis::BlackChassis(WPI_TalonFX& ID1, WPI_TalonFX& ID2, WPI_TalonFX& ID3, WPI_TalonFX& ID4) 
     :FrontRightWheel(ID1),
@@ -16,7 +17,12 @@ BlackChassis::BlackChassis(WPI_TalonFX& ID1, WPI_TalonFX& ID2, WPI_TalonFX& ID3,
 }
 
 // This method will be called once per scheduler run
-void BlackChassis::Periodic() {}
+void BlackChassis::Periodic() {
+    //gear ratio:
+    frc::SmartDashboard::PutNumber("SpeedRight(FeetPerSecond)", 12.57*FrontRightWheel.GetSelectedSensorVelocity()*(2/3)/12);
+    frc::SmartDashboard::PutNumber("SpeedLeft(FeetPerSecond)", 12.57*FrontLeftWheel.GetSelectedSensorVelocity()*(2/3)/12);
+    //(12.57in*rotations a second*gear ratio) / 12
+}
 
 void BlackChassis::TankDrive(double left, double right){
     Drive.TankDrive(left, right);
