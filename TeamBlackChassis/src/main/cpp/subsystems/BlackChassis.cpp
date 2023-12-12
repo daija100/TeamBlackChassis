@@ -18,9 +18,9 @@ BlackChassis::BlackChassis(WPI_TalonFX& ID1, WPI_TalonFX& ID2, WPI_TalonFX& ID3,
 
 // This method will be called once per scheduler run
 void BlackChassis::Periodic() {
-    //gear ratio:14/60
-    frc::SmartDashboard::PutNumber("SpeedRight(FeetPerSecond)", 12.57*FrontRightWheel.GetSelectedSensorVelocity()*(10/44)/12);
-    frc::SmartDashboard::PutNumber("SpeedLeft(FeetPerSecond)", 12.57*FrontLeftWheel.GetSelectedSensorVelocity()*(10/44)/12);
+    //gear ratio:14/62
+    frc::SmartDashboard::PutNumber("SpeedRight(FeetPerSecond)", 12.57*FrontRightWheel.GetSelectedSensorVelocity()*(14/62)/12);
+    frc::SmartDashboard::PutNumber("SpeedLeft(FeetPerSecond)", 12.57*FrontLeftWheel.GetSelectedSensorVelocity()*(14/62)/12);
     //(circumferance inches*rotations a second*gear ratio) / 12
 }
 
